@@ -1,0 +1,5 @@
+langgraph==1.2.16
+langchain-core==1.7.0
+langchain-openrouter==0.2.9
+openrouter==0.11.46
+pydantic==2.12.5

@@ -1,0 +1,298 @@
+{
+  "model": "openai/gpt-4.1-mini",
+  "rates_date": "Tue, 24 Nov 2026 00:00:02 +0000",
+  "limits": {
+    "max_steps": 10,
+    "timeout_s": 60,
+    "loop_max_repeats": 3
+  },
+  "passed": 5,
+  "total": 5,
+  "results": [
+    {
+      "test_id": "TC-001",
+      "complexity": "simple",
+      "query": "Скільки гривень я отримаю за 250 євро за поточним курсом?",
+      "expected": "Конвертація 250 EUR → UAH за поточним курсом",
+      "expected_numbers": [
+        [
+          12318.58
+        ]
+      ],
+      "actual": "За поточним курсом 250 євро дорівнює 12 318,58 гривень. Курс використано 49,2743 грн за 1 євро.",
+      "confidence": 1.0,
+      "sources": [
+        "convert_currency",
+        "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+      ],
+      "sources_dropped": [],
+      "status": "success",
+      "passed": true,
+      "checks": {
+        "numbers": "1/1",
+        "format_issues": [],
+        "ungrounded_numbers": [],
+        "sources_ok": true,
+        "confidence_ok": true,
+        "tools_as_expected": true
+      },
+      "steps": 2,
+      "tool_calls": [
+        {
+          "name": "convert_currency",
+          "args": {
+            "amount": 250,
+            "from_currency": "EUR",
+            "to_currency": "UAH"
+          }
+        }
+      ],
+      "tool_errors": 0,
+      "elapsed_ms": 3154,
+      "llm_calls": 3,
+      "estimated_usd": 0.001779,
+      "max_steps_hit": false,
+      "timeout_hit": false,
+      "loop_detected": false
+    },
+    {
+      "test_id": "TC-002",
+      "complexity": "medium",
+      "query": "Порівняй депозит 100 000 грн на 12 місяців під 14% річних: з щомісячною капіталізацією і без неї. Яка різниця в доході?",
+      "expected": "Два розрахунки депозиту (сума або дохід кожного) і різниця доходів",
+      "expected_numbers": [
+        [
+          114934.2,
+          14934.2
+        ],
+        [
+          114000.0,
+          14000.0
+        ],
+        [
+          934.2
+        ]
+      ],
+      "actual": "Депозит 100 000 грн на 12 місяців під 14% річних з щомісячною капіталізацією принесе 114 934,20 грн, тобто дохід 14 934,20 грн. Той самий депозит без капіталізації (простими відсотками) принесе 114 000,00 грн, дохід 14 000,00 грн. Різниця в доході між капіталізацією і простими відсотками становить 934,20 грн на користь щомісячної капіталізації.",
+      "confidence": 1.0,
+      "sources": [
+        "calculate_deposit"
+      ],
+      "sources_dropped": [],
+      "status": "success",
+      "passed": true,
+      "checks": {
+        "numbers": "3/3",
+        "format_issues": [],
+        "ungrounded_numbers": [],
+        "sources_ok": true,
+        "confidence_ok": true,
+        "tools_as_expected": true
+      },
+      "steps": 2,
+      "tool_calls": [
+        {
+          "name": "calculate_deposit",
+          "args": {
+            "principal": 100000,
+            "annual_rate_percent": 14,
+            "months": 12,
+            "capitalization": "monthly"
+          }
+        },
+        {
+          "name": "calculate_deposit",
+          "args": {
+            "principal": 100000,
+            "annual_rate_percent": 14,
+            "months": 12,
+            "capitalization": "none"
+          }
+        }
+      ],
+      "tool_errors": 0,
+      "elapsed_ms": 5033,
+      "llm_calls": 3,
+      "estimated_usd": 0.002292,
+      "max_steps_hit": false,
+      "timeout_hit": false,
+      "loop_detected": false
+    },
+    {
+      "test_id": "TC-003",
+      "complexity": "medium",
+      "query": "Кредит 300 000 грн під 18% річних: який щомісячний платіж і переплата, якщо взяти на 24 місяці, а якщо на 36?",
+      "expected": "Платіж і переплата для 24 та 36 місяців",
+      "expected_numbers": [
+        [
+          14977.23
+        ],
+        [
+          59453.53
+        ],
+        [
+          10845.72
+        ],
+        [
+          90445.87
+        ]
+      ],
+      "actual": "Для кредиту 300 000 грн під 18% річних:\n\n- На 24 місяці щомісячний платіж становитиме 14 977,23 грн, загальна сума виплат — 359 453,53 грн, переплата — 59 453,53 грн.\n- На 36 місяців щомісячний платіж становитиме 10 845,72 грн, загальна сума виплат — 390 445,87 грн, переплата — 90 445,87 грн.",
+      "confidence": 1.0,
+      "sources": [
+        "calculate_loan_payment"
+      ],
+      "sources_dropped": [],
+      "status": "success",
+      "passed": true,
+      "checks": {
+        "numbers": "4/4",
+        "format_issues": [],
+        "ungrounded_numbers": [],
+        "sources_ok": true,
+        "confidence_ok": true,
+        "tools_as_expected": true
+      },
+      "steps": 2,
+      "tool_calls": [
+        {
+          "name": "calculate_loan_payment",
+          "args": {
+            "principal": 300000,
+            "annual_rate_percent": 18,
+            "months": 24
+          }
+        },
+        {
+          "name": "calculate_loan_payment",
+          "args": {
+            "principal": 300000,
+            "annual_rate_percent": 18,
+            "months": 36
+          }
+        }
+      ],
+      "tool_errors": 0,
+      "elapsed_ms": 5990,
+      "llm_calls": 3,
+      "estimated_usd": 0.002276,
+      "max_steps_hit": false,
+      "timeout_hit": false,
+      "loop_detected": false
+    },
+    {
+      "test_id": "TC-004",
+      "complexity": "complex",
+      "query": "У мене 3000 доларів. Переведи їх у гривні, поклади на депозит на 12 місяців під 15% річних із щомісячною капіталізацією і оціни, скільки ця сума буде варта в сьогоднішніх грошах при інфляції 10% на рік.",
+      "expected": "Ланцюжок конвертація → депозит → інфляція з результатом кожного кроку",
+      "expected_numbers": [
+        [
+          135361.5
+        ],
+        [
+          157121.47
+        ],
+        [
+          142837.7
+        ]
+      ],
+      "actual": "У вас 3 000 доларів, що за курсом 45,1205 становить 135 361,50 гривень. Якщо покласти цю суму на депозит на 12 місяців під 15% річних зі щомісячною капіталізацією, то наприкінці терміну на рахунку буде 157 121,47 гривень (з нарахованими відсотками 21 759,97 грн). З урахуванням інфляції 10% за рік ця сума в сьогоднішніх грошах буде еквівалентна 142 837,70 гривень. Це означає, що реальна купівельна спроможність грошей з урахуванням інфляції зменшиться на 14 283,77 грн.",
+      "confidence": 1.0,
+      "sources": [
+        "convert_currency",
+        "calculate_deposit",
+        "adjust_for_inflation",
+        "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+      ],
+      "sources_dropped": [],
+      "status": "success",
+      "passed": true,
+      "checks": {
+        "numbers": "3/3",
+        "format_issues": [],
+        "ungrounded_numbers": [],
+        "sources_ok": true,
+        "confidence_ok": true,
+        "tools_as_expected": true
+      },
+      "steps": 4,
+      "tool_calls": [
+        {
+          "name": "convert_currency",
+          "args": {
+            "amount": 3000,
+            "from_currency": "USD",
+            "to_currency": "UAH"
+          }
+        },
+        {
+          "name": "calculate_deposit",
+          "args": {
+            "principal": 135361.5,
+            "annual_rate_percent": 15,
+            "months": 12,
+            "capitalization": "monthly"
+          }
+        },
+        {
+          "name": "adjust_for_inflation",
+          "args": {
+            "amount": 157121.47,
+            "annual_inflation_percent": 10,
+            "years": 1
+          }
+        }
+      ],
+      "tool_errors": 0,
+      "elapsed_ms": 9609,
+      "llm_calls": 5,
+      "estimated_usd": 0.003933,
+      "max_steps_hit": false,
+      "timeout_hit": false,
+      "loop_detected": false
+    },
+    {
+      "test_id": "TC-005",
+      "complexity": "edge",
+      "query": "Скільки гривень коштують 0.5 біткоїна?",
+      "expected": "Пояснення, що курсу BTC немає в джерелі; жодної вигаданої суми",
+      "expected_numbers": [],
+      "actual": "На жаль, я не можу конвертувати біткоїн (BTC) у гривні, оскільки валюта BTC відсутня в доступних курсах ExchangeRate-API. Якщо у вас є інша валюта для конвертації, я з радістю допоможу.",
+      "confidence": 1.0,
+      "sources": [
+        "convert_currency"
+      ],
+      "sources_dropped": [],
+      "status": "success",
+      "passed": true,
+      "checks": {
+        "numbers": "0/0",
+        "format_issues": [],
+        "ungrounded_numbers": [],
+        "sources_ok": true,
+        "confidence_ok": true,
+        "mentions_btc": true,
+        "no_invented_amount": true,
+        "tools_as_expected": true
+      },
+      "steps": 2,
+      "tool_calls": [
+        {
+          "name": "convert_currency",
+          "args": {
+            "amount": 0.5,
+            "from_currency": "BTC",
+            "to_currency": "UAH"
+          }
+        }
+      ],
+      "tool_errors": 1,
+      "elapsed_ms": 4113,
+      "llm_calls": 3,
+      "estimated_usd": 0.001863,
+      "max_steps_hit": false,
+      "timeout_hit": false,
+      "loop_detected": false
+    }
+  ]
+}

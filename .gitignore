@@ -1,0 +1,6 @@
+*_api.txt
+.env
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store
+*.zip

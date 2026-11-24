@@ -1,0 +1,1181 @@
+{
+  "model": "openai/gpt-4.1-mini",
+  "generated_at": "2026-11-24T22:12:23+00:00",
+  "limits": {
+    "max_steps": 10,
+    "timeout_s": 60,
+    "loop_max_repeats": 3
+  },
+  "runs": [
+    {
+      "run_id": "demo-1",
+      "query": "Який щомісячний платіж за кредитом 100 000 грн на 12 місяців під 12% річних?",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 2,
+      "llm_calls": 3,
+      "estimated_usd": 0.00198,
+      "final": {
+        "answer": "Щомісячний платіж за кредитом 100 000 грн на 12 місяців під 12% річних становить 8 884,88 грн. Загальна сума виплат за весь період буде 106 618,55 грн, а переплата за відсотками — 6 618,55 грн. Ці дані отримані з розрахунку ануїтетного платежу.",
+        "confidence": 1.0,
+        "sources": [
+          "calculate_loan_payment"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 4,
+      "total_time_ms": 5075,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Який щомісячний платіж за кредитом 100 000 грн на 12 місяців під 12% річних?",
+          "output": "calculate_loan_payment(principal=100000, annual_rate_percent=12, months=12)",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 100000,
+                "annual_rate_percent": 12,
+                "months": 12
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:41.831+00:00",
+          "duration_ms": 1482,
+          "elapsed_ms": 1483
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "calculate_loan_payment(principal=100000, annual_rate_percent=12, months=12)",
+          "output": "{\"principal\": 100000.0, \"annual_rate_percent\": 12.0, \"months\": 12, \"monthly_payment\": 8884.88, \"total_paid\": 106618.55, \"overpayment\": 6618.55}",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 100000,
+                "annual_rate_percent": 12,
+                "months": 12
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:41.833+00:00",
+          "duration_ms": 1,
+          "elapsed_ms": 1486
+        },
+        {
+          "step": 3,
+          "node": "agent",
+          "input": "calculate_loan_payment: {\"principal\": 100000.0, \"annual_rate_percent\": 12.0, \"months\": 12, \"monthly_payment\": 8884.88, \"total_paid\": 106618.55, \"overpayment\": 6618.55}",
+          "output": "Щомісячний платіж за кредитом 100 000 грн на 12 місяців під 12% річних становить 8 884,88 грн. Загальна сума виплат за весь період буде 106 618,55 грн, а переплата за відсотками — 6 618,55 грн. Ці дані отримані з розрахунку ануїтетного платежу.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:43.801+00:00",
+          "duration_ms": 1966,
+          "elapsed_ms": 3454
+        },
+        {
+          "step": 4,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"Щомісячний платіж за кредитом 100 000 грн на 12 місяців під 12% річних становить 8 884,88 грн. Загальна сума виплат за весь період буде 106 618,55 грн, а переплата за відсотками — 6 618,55 грн. Ці дані отримані з розрахунку ануїтетного платежу.\", \"confidence\": 1.0, \"sources\": [\"calculate_loan_payment\"], \"status\": \"complete\", \"stop_reason\": null, \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:45.422+00:00",
+          "duration_ms": 1618,
+          "elapsed_ms": 5074
+        }
+      ]
+    },
+    {
+      "run_id": "demo-2",
+      "query": "Скільки буде 1000 доларів у євро і скільки в гривнях?",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 2,
+      "llm_calls": 3,
+      "estimated_usd": 0.001988,
+      "final": {
+        "answer": "1000 доларів США дорівнюють 915,70 євро та 45 120,50 гривень за актуальним курсом. Курс долара до євро становить 0,9157, а до гривні — 45,1205.",
+        "confidence": 1.0,
+        "sources": [
+          "convert_currency",
+          "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 5,
+      "total_time_ms": 5001,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Скільки буде 1000 доларів у євро і скільки в гривнях?",
+          "output": "convert_currency(amount=1000, from_currency=USD, to_currency=EUR); convert_currency(amount=1000, from_currency=USD, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 1000,
+                "from_currency": "USD",
+                "to_currency": "EUR"
+              }
+            },
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 1000,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:47.040+00:00",
+          "duration_ms": 1615,
+          "elapsed_ms": 1617
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "convert_currency(amount=1000, from_currency=USD, to_currency=EUR)",
+          "output": "{\"amount\": 1000.0, \"from_currency\": \"USD\", \"to_currency\": \"EUR\", \"rate\": 0.9157, \"result\": 915.7, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 1000,
+                "from_currency": "USD",
+                "to_currency": "EUR"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:47.042+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1619
+        },
+        {
+          "step": 3,
+          "node": "tools",
+          "input": "convert_currency(amount=1000, from_currency=USD, to_currency=UAH)",
+          "output": "{\"amount\": 1000.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 45120.5, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 1000,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:47.043+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1620
+        },
+        {
+          "step": 4,
+          "node": "agent",
+          "input": "convert_currency: {\"amount\": 1000.0, \"from_currency\": \"USD\", \"to_currency\": \"EUR\", \"rate\": 0.9157, \"result\": 915.7, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"} | convert_currency: {\"amount\": 1000.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 45120.5, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "output": "1000 доларів США дорівнюють 915,70 євро та 45 120,50 гривень за актуальним курсом. Курс долара до євро становить 0,9157, а до гривні — 45,1205.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:48.656+00:00",
+          "duration_ms": 1612,
+          "elapsed_ms": 3233
+        },
+        {
+          "step": 5,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"1000 доларів США дорівнюють 915,70 євро та 45 120,50 гривень за актуальним курсом. Курс долара до євро становить 0,9157, а до гривні — 45,1205.\", \"confidence\": 1.0, \"sources\": [\"convert_currency\", \"ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)\"], \"status\": \"complete\", \"stop_reason\": null, \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:50.424+00:00",
+          "duration_ms": 1767,
+          "elapsed_ms": 5001
+        }
+      ]
+    },
+    {
+      "run_id": "guard-max-steps",
+      "query": "У мене 3000 доларів. Переведи їх у гривні, поклади на депозит на 12 місяців під 15% річних із щомісячною капіталізацією і оціни, скільки ця сума буде варта в сьогоднішніх грошах при інфляції 10% на рік.",
+      "status": "partial",
+      "stop_reason": "max_steps",
+      "error": null,
+      "steps": 2,
+      "llm_calls": 2,
+      "estimated_usd": 0.001238,
+      "final": {
+        "answer": "Досягнуто ліміт кроків (2), відповідь неповна. Отримані результати: convert_currency: result = 135 361,50; calculate_deposit: final_amount = 157 121,47",
+        "confidence": 0.0,
+        "sources": [
+          "calculate_deposit",
+          "convert_currency",
+          "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+        ],
+        "status": "partial",
+        "stop_reason": "max_steps",
+        "sources_dropped": []
+      },
+      "total_steps": 6,
+      "total_time_ms": 2127,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "У мене 3000 доларів. Переведи їх у гривні, поклади на депозит на 12 місяців під 15% річних із щомісячною капіталізацією і оціни, скільки ця сума буде варта в сьогоднішніх грошах при інфляції 10% на рік.",
+          "output": "convert_currency(amount=3000, from_currency=USD, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 3000,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:51.509+00:00",
+          "duration_ms": 1064,
+          "elapsed_ms": 1065
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "convert_currency(amount=3000, from_currency=USD, to_currency=UAH)",
+          "output": "{\"amount\": 3000.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 135361.5, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 3000,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:51.512+00:00",
+          "duration_ms": 1,
+          "elapsed_ms": 1068
+        },
+        {
+          "step": 3,
+          "node": "agent",
+          "input": "convert_currency: {\"amount\": 3000.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 135361.5, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "output": "calculate_deposit(principal=135361.5, annual_rate_percent=15, months=12, capitalization=monthly)",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 135361.5,
+                "annual_rate_percent": 15,
+                "months": 12,
+                "capitalization": "monthly"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:52.567+00:00",
+          "duration_ms": 1053,
+          "elapsed_ms": 2123
+        },
+        {
+          "step": 4,
+          "node": "tools",
+          "input": "calculate_deposit(principal=135361.5, annual_rate_percent=15, months=12, capitalization=monthly)",
+          "output": "{\"principal\": 135361.5, \"annual_rate_percent\": 15.0, \"months\": 12, \"capitalization\": \"monthly\", \"final_amount\": 157121.47, \"interest\": 21759.97}",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 135361.5,
+                "annual_rate_percent": 15,
+                "months": 12,
+                "capitalization": "monthly"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:52.569+00:00",
+          "duration_ms": 1,
+          "elapsed_ms": 2125
+        },
+        {
+          "step": 5,
+          "node": "agent",
+          "input": "step_count=2, elapsed=2.13s",
+          "output": "STOP: max_steps",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:52.571+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 2127
+        },
+        {
+          "step": 6,
+          "node": "formatter",
+          "input": "max_steps",
+          "output": "{\"answer\": \"Досягнуто ліміт кроків (2), відповідь неповна. Отримані результати: convert_currency: result = 135 361,50; calculate_deposit: final_amount = 157 121,47\", \"confidence\": 0.0, \"sources\": [\"calculate_deposit\", \"convert_currency\", \"ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)\"], \"status\": \"partial\", \"stop_reason\": \"max_steps\", \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:52.571+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 2127
+        }
+      ]
+    },
+    {
+      "run_id": "guard-timeout",
+      "query": "Порівняй щомісячний платіж за кредитом 200 000 грн під 20% річних на 12, 24 і 36 місяців.",
+      "status": "partial",
+      "stop_reason": "timeout",
+      "error": null,
+      "steps": 1,
+      "llm_calls": 1,
+      "estimated_usd": 0.00069,
+      "final": {
+        "answer": "Перевищено тайм-аут 1,5 с, відповідь неповна. Отримані результати: calculate_loan_payment: monthly_payment = 18 526,90; calculate_loan_payment: monthly_payment = 10 179,16; calculate_loan_payment: monthly_payment = 7 432,72",
+        "confidence": 0.0,
+        "sources": [
+          "calculate_loan_payment"
+        ],
+        "status": "partial",
+        "stop_reason": "timeout",
+        "sources_dropped": []
+      },
+      "total_steps": 6,
+      "total_time_ms": 3460,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Порівняй щомісячний платіж за кредитом 200 000 грн під 20% річних на 12, 24 і 36 місяців.",
+          "output": "calculate_loan_payment(principal=200000, annual_rate_percent=20, months=12); calculate_loan_payment(principal=200000, annual_rate_percent=20, months=24); calculate_loan_payment(principal=200000, annual_rate_percent=20, months=36)",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 200000,
+                "annual_rate_percent": 20,
+                "months": 12
+              }
+            },
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 200000,
+                "annual_rate_percent": 20,
+                "months": 24
+              }
+            },
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 200000,
+                "annual_rate_percent": 20,
+                "months": 36
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:54.023+00:00",
+          "duration_ms": 1450,
+          "elapsed_ms": 1451
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "calculate_loan_payment(principal=200000, annual_rate_percent=20, months=24)",
+          "output": "{\"principal\": 200000.0, \"annual_rate_percent\": 20.0, \"months\": 24, \"monthly_payment\": 10179.16, \"total_paid\": 244299.85, \"overpayment\": 44299.85}",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 200000,
+                "annual_rate_percent": 20,
+                "months": 24
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.027+00:00",
+          "duration_ms": 2002,
+          "elapsed_ms": 3455
+        },
+        {
+          "step": 3,
+          "node": "tools",
+          "input": "calculate_loan_payment(principal=200000, annual_rate_percent=20, months=12)",
+          "output": "{\"principal\": 200000.0, \"annual_rate_percent\": 20.0, \"months\": 12, \"monthly_payment\": 18526.9, \"total_paid\": 222322.81, \"overpayment\": 22322.81}",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 200000,
+                "annual_rate_percent": 20,
+                "months": 12
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.030+00:00",
+          "duration_ms": 2004,
+          "elapsed_ms": 3458
+        },
+        {
+          "step": 4,
+          "node": "tools",
+          "input": "calculate_loan_payment(principal=200000, annual_rate_percent=20, months=36)",
+          "output": "{\"principal\": 200000.0, \"annual_rate_percent\": 20.0, \"months\": 36, \"monthly_payment\": 7432.72, \"total_paid\": 267577.8, \"overpayment\": 67577.8}",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 200000,
+                "annual_rate_percent": 20,
+                "months": 36
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.031+00:00",
+          "duration_ms": 2005,
+          "elapsed_ms": 3459
+        },
+        {
+          "step": 5,
+          "node": "agent",
+          "input": "step_count=1, elapsed=3.46s",
+          "output": "STOP: timeout",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:56.032+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 3460
+        },
+        {
+          "step": 6,
+          "node": "formatter",
+          "input": "timeout",
+          "output": "{\"answer\": \"Перевищено тайм-аут 1,5 с, відповідь неповна. Отримані результати: calculate_loan_payment: monthly_payment = 18 526,90; calculate_loan_payment: monthly_payment = 10 179,16; calculate_loan_payment: monthly_payment = 7 432,72\", \"confidence\": 0.0, \"sources\": [\"calculate_loan_payment\"], \"status\": \"partial\", \"stop_reason\": \"timeout\", \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:56.032+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 3460
+        }
+      ]
+    },
+    {
+      "run_id": "guard-loop",
+      "query": "Скільки гривень коштують 100 доларів?",
+      "status": "partial",
+      "stop_reason": "loop",
+      "error": null,
+      "steps": 3,
+      "llm_calls": 0,
+      "estimated_usd": 0.0,
+      "final": {
+        "answer": "Агент утретє поспіль повторив той самий виклик інструмента, виконання зупинено. Отримані результати: convert_currency: result = 4 512,05; convert_currency: result = 4 512,05",
+        "confidence": 0.0,
+        "sources": [
+          "convert_currency",
+          "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+        ],
+        "status": "partial",
+        "stop_reason": "loop",
+        "sources_dropped": []
+      },
+      "total_steps": 7,
+      "total_time_ms": 4,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Скільки гривень коштують 100 доларів?",
+          "output": "convert_currency(amount=100, from_currency=USD, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 100,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.034+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "convert_currency(amount=100, from_currency=USD, to_currency=UAH)",
+          "output": "{\"amount\": 100.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 4512.05, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 100,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.035+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 2
+        },
+        {
+          "step": 3,
+          "node": "agent",
+          "input": "convert_currency: {\"amount\": 100.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 4512.05, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "output": "convert_currency(amount=100, from_currency=USD, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 100,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.036+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 2
+        },
+        {
+          "step": 4,
+          "node": "tools",
+          "input": "convert_currency(amount=100, from_currency=USD, to_currency=UAH)",
+          "output": "{\"amount\": 100.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 4512.05, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 100,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.037+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 3
+        },
+        {
+          "step": 5,
+          "node": "agent",
+          "input": "convert_currency: {\"amount\": 100.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 4512.05, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "output": "convert_currency(amount=100, from_currency=USD, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 100,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.037+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 4
+        },
+        {
+          "step": 6,
+          "node": "agent",
+          "input": "convert_currency(amount=100, from_currency=USD, to_currency=UAH)",
+          "output": "STOP: loop",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 100,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:56.037+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 4
+        },
+        {
+          "step": 7,
+          "node": "formatter",
+          "input": "loop",
+          "output": "{\"answer\": \"Агент утретє поспіль повторив той самий виклик інструмента, виконання зупинено. Отримані результати: convert_currency: result = 4 512,05; convert_currency: result = 4 512,05\", \"confidence\": 0.0, \"sources\": [\"convert_currency\", \"ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)\"], \"status\": \"partial\", \"stop_reason\": \"loop\", \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:56.038+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 4
+        }
+      ]
+    },
+    {
+      "run_id": "TC-001",
+      "query": "Скільки гривень я отримаю за 250 євро за поточним курсом?",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 2,
+      "llm_calls": 3,
+      "estimated_usd": 0.001779,
+      "final": {
+        "answer": "За поточним курсом 250 євро дорівнює 12 318,58 гривень. Курс використано 49,2743 грн за 1 євро.",
+        "confidence": 1.0,
+        "sources": [
+          "convert_currency",
+          "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 4,
+      "total_time_ms": 3154,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Скільки гривень я отримаю за 250 євро за поточним курсом?",
+          "output": "convert_currency(amount=250, from_currency=EUR, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 250,
+                "from_currency": "EUR",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:57.049+00:00",
+          "duration_ms": 959,
+          "elapsed_ms": 960
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "convert_currency(amount=250, from_currency=EUR, to_currency=UAH)",
+          "output": "{\"amount\": 250.0, \"from_currency\": \"EUR\", \"to_currency\": \"UAH\", \"rate\": 49.274326, \"result\": 12318.58, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 250,
+                "from_currency": "EUR",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:11:57.052+00:00",
+          "duration_ms": 1,
+          "elapsed_ms": 964
+        },
+        {
+          "step": 3,
+          "node": "agent",
+          "input": "convert_currency: {\"amount\": 250.0, \"from_currency\": \"EUR\", \"to_currency\": \"UAH\", \"rate\": 49.274326, \"result\": 12318.58, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "output": "За поточним курсом 250 євро дорівнює 12 318,58 гривень. Курс використано 49,2743 грн за 1 євро.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:58.160+00:00",
+          "duration_ms": 1106,
+          "elapsed_ms": 2072
+        },
+        {
+          "step": 4,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"За поточним курсом 250 євро дорівнює 12 318,58 гривень. Курс використано 49,2743 грн за 1 євро.\", \"confidence\": 1.0, \"sources\": [\"convert_currency\", \"ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)\"], \"status\": \"complete\", \"stop_reason\": null, \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:11:59.242+00:00",
+          "duration_ms": 1080,
+          "elapsed_ms": 3154
+        }
+      ]
+    },
+    {
+      "run_id": "TC-002",
+      "query": "Порівняй депозит 100 000 грн на 12 місяців під 14% річних: з щомісячною капіталізацією і без неї. Яка різниця в доході?",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 2,
+      "llm_calls": 3,
+      "estimated_usd": 0.002292,
+      "final": {
+        "answer": "Депозит 100 000 грн на 12 місяців під 14% річних з щомісячною капіталізацією принесе 114 934,20 грн, тобто дохід 14 934,20 грн. Той самий депозит без капіталізації (простими відсотками) принесе 114 000,00 грн, дохід 14 000,00 грн. Різниця в доході між капіталізацією і простими відсотками становить 934,20 грн на користь щомісячної капіталізації.",
+        "confidence": 1.0,
+        "sources": [
+          "calculate_deposit"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 5,
+      "total_time_ms": 5033,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Порівняй депозит 100 000 грн на 12 місяців під 14% річних: з щомісячною капіталізацією і без неї. Яка різниця в доході?",
+          "output": "calculate_deposit(principal=100000, annual_rate_percent=14, months=12, capitalization=monthly); calculate_deposit(principal=100000, annual_rate_percent=14, months=12, capitalization=none)",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 100000,
+                "annual_rate_percent": 14,
+                "months": 12,
+                "capitalization": "monthly"
+              }
+            },
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 100000,
+                "annual_rate_percent": 14,
+                "months": 12,
+                "capitalization": "none"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:00.639+00:00",
+          "duration_ms": 1394,
+          "elapsed_ms": 1395
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "calculate_deposit(principal=100000, annual_rate_percent=14, months=12, capitalization=monthly)",
+          "output": "{\"principal\": 100000.0, \"annual_rate_percent\": 14.0, \"months\": 12, \"capitalization\": \"monthly\", \"final_amount\": 114934.2, \"interest\": 14934.2}",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 100000,
+                "annual_rate_percent": 14,
+                "months": 12,
+                "capitalization": "monthly"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:00.642+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1397
+        },
+        {
+          "step": 3,
+          "node": "tools",
+          "input": "calculate_deposit(principal=100000, annual_rate_percent=14, months=12, capitalization=none)",
+          "output": "{\"principal\": 100000.0, \"annual_rate_percent\": 14.0, \"months\": 12, \"capitalization\": \"none\", \"final_amount\": 114000.0, \"interest\": 14000.0}",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 100000,
+                "annual_rate_percent": 14,
+                "months": 12,
+                "capitalization": "none"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:00.642+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1398
+        },
+        {
+          "step": 4,
+          "node": "agent",
+          "input": "calculate_deposit: {\"principal\": 100000.0, \"annual_rate_percent\": 14.0, \"months\": 12, \"capitalization\": \"monthly\", \"final_amount\": 114934.2, \"interest\": 14934.2} | calculate_deposit: {\"principal\": 100000.0, \"annual_rate_percent\": 14.0, \"months\": 12, \"capitalization\": \"none\", \"final_amount\": 114000.0, \"interest\": 14000.0}",
+          "output": "Депозит 100 000 грн на 12 місяців під 14% річних з щомісячною капіталізацією принесе 114 934,20 грн, тобто дохід 14 934,20 грн.\n\nТой самий депозит без капіталізації (простими відсотками) принесе 114 000,00 грн, дохід 14 000,00 грн.\n\nРізниця в доході між капіталізацією і простими відсотками становить 934,20 грн на користь щомісячної капіталізації.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:02.344+00:00",
+          "duration_ms": 1700,
+          "elapsed_ms": 3099
+        },
+        {
+          "step": 5,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"Депозит 100 000 грн на 12 місяців під 14% річних з щомісячною капіталізацією принесе 114 934,20 грн, тобто дохід 14 934,20 грн. Той самий депозит без капіталізації (простими відсотками) принесе 114 000,00 грн, дохід 14 000,00 грн. Різниця в доході між капіталізацією і простими відсотками становить 934,20 грн на користь щомісячної капіталізації.\", \"confidence\": 1.0, \"sources\": [\"calculate_deposit\"], \"status\": \"complete\", \"stop_reason\": null, \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:04.277+00:00",
+          "duration_ms": 1931,
+          "elapsed_ms": 5032
+        }
+      ]
+    },
+    {
+      "run_id": "TC-003",
+      "query": "Кредит 300 000 грн під 18% річних: який щомісячний платіж і переплата, якщо взяти на 24 місяці, а якщо на 36?",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 2,
+      "llm_calls": 3,
+      "estimated_usd": 0.002276,
+      "final": {
+        "answer": "Для кредиту 300 000 грн під 18% річних:\n\n- На 24 місяці щомісячний платіж становитиме 14 977,23 грн, загальна сума виплат — 359 453,53 грн, переплата — 59 453,53 грн.\n- На 36 місяців щомісячний платіж становитиме 10 845,72 грн, загальна сума виплат — 390 445,87 грн, переплата — 90 445,87 грн.",
+        "confidence": 1.0,
+        "sources": [
+          "calculate_loan_payment"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 5,
+      "total_time_ms": 5990,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Кредит 300 000 грн під 18% річних: який щомісячний платіж і переплата, якщо взяти на 24 місяці, а якщо на 36?",
+          "output": "calculate_loan_payment(principal=300000, annual_rate_percent=18, months=24); calculate_loan_payment(principal=300000, annual_rate_percent=18, months=36)",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 300000,
+                "annual_rate_percent": 18,
+                "months": 24
+              }
+            },
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 300000,
+                "annual_rate_percent": 18,
+                "months": 36
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:05.781+00:00",
+          "duration_ms": 1502,
+          "elapsed_ms": 1503
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "calculate_loan_payment(principal=300000, annual_rate_percent=18, months=24)",
+          "output": "{\"principal\": 300000.0, \"annual_rate_percent\": 18.0, \"months\": 24, \"monthly_payment\": 14977.23, \"total_paid\": 359453.53, \"overpayment\": 59453.53}",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 300000,
+                "annual_rate_percent": 18,
+                "months": 24
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:05.785+00:00",
+          "duration_ms": 1,
+          "elapsed_ms": 1507
+        },
+        {
+          "step": 3,
+          "node": "tools",
+          "input": "calculate_loan_payment(principal=300000, annual_rate_percent=18, months=36)",
+          "output": "{\"principal\": 300000.0, \"annual_rate_percent\": 18.0, \"months\": 36, \"monthly_payment\": 10845.72, \"total_paid\": 390445.87, \"overpayment\": 90445.87}",
+          "tool_calls": [
+            {
+              "name": "calculate_loan_payment",
+              "args": {
+                "principal": 300000,
+                "annual_rate_percent": 18,
+                "months": 36
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:05.787+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1509
+        },
+        {
+          "step": 4,
+          "node": "agent",
+          "input": "calculate_loan_payment: {\"principal\": 300000.0, \"annual_rate_percent\": 18.0, \"months\": 24, \"monthly_payment\": 14977.23, \"total_paid\": 359453.53, \"overpayment\": 59453.53} | calculate_loan_payment: {\"principal\": 300000.0, \"annual_rate_percent\": 18.0, \"months\": 36, \"monthly_payment\": 10845.72, \"total_paid\": 390445.87, \"overpayment\": 90445.87}",
+          "output": "Для кредиту 300 000 грн під 18% річних:\n\n- На 24 місяці щомісячний платіж становитиме 14 977,23 грн, загальна сума виплат — 359 453,53 грн, переплата — 59 453,53 грн.\n- На 36 місяців щомісячний платіж становитиме 10 845,72 грн, загальна сума виплат — 390 445,87 грн, переплата — 90 445,87 грн.\n\nЦі дані отримані з розрахунку ануїтетних платежів за кредитом.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:08.451+00:00",
+          "duration_ms": 2662,
+          "elapsed_ms": 4173
+        },
+        {
+          "step": 5,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"Для кредиту 300 000 грн під 18% річних:\\n\\n- На 24 місяці щомісячний платіж становитиме 14 977,23 грн, загальна сума виплат — 359 453,53 грн, переплата — 59 453,53 грн.\\n- На 36 місяців щомісячний платіж становитиме 10 845,72 грн, загальна сума виплат — 390 445,87 грн, переплата — 90 445,87 грн.\", \"confidence\": 1.0, \"sources\": [\"calculate_loan_payment\"], \"status\": \"complete\", \"stop_reason\": null, \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:10.268+00:00",
+          "duration_ms": 1815,
+          "elapsed_ms": 5990
+        }
+      ]
+    },
+    {
+      "run_id": "TC-004",
+      "query": "У мене 3000 доларів. Переведи їх у гривні, поклади на депозит на 12 місяців під 15% річних із щомісячною капіталізацією і оціни, скільки ця сума буде варта в сьогоднішніх грошах при інфляції 10% на рік.",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 4,
+      "llm_calls": 5,
+      "estimated_usd": 0.003933,
+      "final": {
+        "answer": "У вас 3 000 доларів, що за курсом 45,1205 становить 135 361,50 гривень. Якщо покласти цю суму на депозит на 12 місяців під 15% річних зі щомісячною капіталізацією, то наприкінці терміну на рахунку буде 157 121,47 гривень (з нарахованими відсотками 21 759,97 грн). З урахуванням інфляції 10% за рік ця сума в сьогоднішніх грошах буде еквівалентна 142 837,70 гривень. Це означає, що реальна купівельна спроможність грошей з урахуванням інфляції зменшиться на 14 283,77 грн.",
+        "confidence": 1.0,
+        "sources": [
+          "convert_currency",
+          "calculate_deposit",
+          "adjust_for_inflation",
+          "ExchangeRate-API (курси на Tue, 24 Nov 2026 00:00:02 +0000)"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 9,
+      "total_time_ms": 9609,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "У мене 3000 доларів. Переведи їх у гривні, поклади на депозит на 12 місяців під 15% річних із щомісячною капіталізацією і оціни, скільки ця сума буде варта в сьогоднішніх грошах при інфляції 10% на рік.",
+          "output": "convert_currency(amount=3000, from_currency=USD, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 3000,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:11.459+00:00",
+          "duration_ms": 1189,
+          "elapsed_ms": 1190
+        },
+        {
+          "step": 2,
+          "node": "agent",
+          "input": "adjust_for_inflation(amount=3000, annual_inflation_percent=10, years=1)",
+          "output": "DEFERRED: пізніша ланка ланцюжка",
+          "tool_calls": [
+            {
+              "name": "adjust_for_inflation",
+              "args": {
+                "amount": 3000,
+                "annual_inflation_percent": 10,
+                "years": 1
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:11.460+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1190
+        },
+        {
+          "step": 3,
+          "node": "tools",
+          "input": "convert_currency(amount=3000, from_currency=USD, to_currency=UAH)",
+          "output": "{\"amount\": 3000.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 135361.5, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 3000,
+                "from_currency": "USD",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:11.462+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 1192
+        },
+        {
+          "step": 4,
+          "node": "agent",
+          "input": "convert_currency: {\"amount\": 3000.0, \"from_currency\": \"USD\", \"to_currency\": \"UAH\", \"rate\": 45.1205, \"result\": 135361.5, \"rates_date\": \"Tue, 24 Nov 2026 00:00:02 +0000\"}",
+          "output": "calculate_deposit(principal=135361.5, annual_rate_percent=15, months=12, capitalization=monthly)",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 135361.5,
+                "annual_rate_percent": 15,
+                "months": 12,
+                "capitalization": "monthly"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:12.618+00:00",
+          "duration_ms": 1155,
+          "elapsed_ms": 2349
+        },
+        {
+          "step": 5,
+          "node": "tools",
+          "input": "calculate_deposit(principal=135361.5, annual_rate_percent=15, months=12, capitalization=monthly)",
+          "output": "{\"principal\": 135361.5, \"annual_rate_percent\": 15.0, \"months\": 12, \"capitalization\": \"monthly\", \"final_amount\": 157121.47, \"interest\": 21759.97}",
+          "tool_calls": [
+            {
+              "name": "calculate_deposit",
+              "args": {
+                "principal": 135361.5,
+                "annual_rate_percent": 15,
+                "months": 12,
+                "capitalization": "monthly"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:12.621+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 2352
+        },
+        {
+          "step": 6,
+          "node": "agent",
+          "input": "calculate_deposit: {\"principal\": 135361.5, \"annual_rate_percent\": 15.0, \"months\": 12, \"capitalization\": \"monthly\", \"final_amount\": 157121.47, \"interest\": 21759.97}",
+          "output": "adjust_for_inflation(amount=157121.47, annual_inflation_percent=10, years=1)",
+          "tool_calls": [
+            {
+              "name": "adjust_for_inflation",
+              "args": {
+                "amount": 157121.47,
+                "annual_inflation_percent": 10,
+                "years": 1
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:13.728+00:00",
+          "duration_ms": 1106,
+          "elapsed_ms": 3459
+        },
+        {
+          "step": 7,
+          "node": "tools",
+          "input": "adjust_for_inflation(amount=157121.47, annual_inflation_percent=10, years=1)",
+          "output": "{\"amount\": 157121.47, \"annual_inflation_percent\": 10.0, \"years\": 1.0, \"real_value\": 142837.7, \"purchasing_power_loss\": 14283.77}",
+          "tool_calls": [
+            {
+              "name": "adjust_for_inflation",
+              "args": {
+                "amount": 157121.47,
+                "annual_inflation_percent": 10,
+                "years": 1
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:13.731+00:00",
+          "duration_ms": 0,
+          "elapsed_ms": 3461
+        },
+        {
+          "step": 8,
+          "node": "agent",
+          "input": "adjust_for_inflation: {\"amount\": 157121.47, \"annual_inflation_percent\": 10.0, \"years\": 1.0, \"real_value\": 142837.7, \"purchasing_power_loss\": 14283.77}",
+          "output": "У вас 3 000 доларів, що за курсом 45,1205 становить 135 361,50 гривень. Якщо покласти цю суму на депозит на 12 місяців під 15% річних зі щомісячною капіталізацією, то наприкінці терміну на рахунку буде 157 121,47 гривень (з нарахованими відсотками 21 759,97 грн).\n\nЗ урахуванням інфляції 10% за рік ця сума в сьогоднішніх грошах буде еквівалентна 142 837,70 гривень. Це означає, що реальна купівельна спроможність грошей з урахуванням інфляції зменшиться на 14 283,77 грн.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:16.919+00:00",
+          "duration_ms": 3186,
+          "elapsed_ms": 6650
+        },
+        {
+          "step": 9,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"У вас 3 000 доларів, що за курсом 45,1205 становить 135 361,50 гривень. Якщо покласти цю суму на депозит на 12 місяців під 15% річних зі щомісячною капіталізацією, то наприкінці терміну на рахунку буде 157 121,47 гривень (з нарахованими відсотками 21 759,97 грн). З урахуванням інфляції 10% за рік ця сума в сьогоднішніх грошах буде еквівалентна 142 837,70 гривень. Це означає, що реальна купівельна спроможність грошей з урахуванням інфляції зменшиться на 14 283,77 грн.\", \"confidence\": ",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:19.878+00:00",
+          "duration_ms": 2958,
+          "elapsed_ms": 9609
+        }
+      ]
+    },
+    {
+      "run_id": "TC-005",
+      "query": "Скільки гривень коштують 0.5 біткоїна?",
+      "status": "complete",
+      "stop_reason": null,
+      "error": null,
+      "steps": 2,
+      "llm_calls": 3,
+      "estimated_usd": 0.001863,
+      "final": {
+        "answer": "На жаль, я не можу конвертувати біткоїн (BTC) у гривні, оскільки валюта BTC відсутня в доступних курсах ExchangeRate-API. Якщо у вас є інша валюта для конвертації, я з радістю допоможу.",
+        "confidence": 1.0,
+        "sources": [
+          "convert_currency"
+        ],
+        "status": "complete",
+        "stop_reason": null,
+        "sources_dropped": []
+      },
+      "total_steps": 4,
+      "total_time_ms": 4113,
+      "trajectory": [
+        {
+          "step": 1,
+          "node": "agent",
+          "input": "Скільки гривень коштують 0.5 біткоїна?",
+          "output": "convert_currency(amount=0.5, from_currency=BTC, to_currency=UAH)",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 0.5,
+                "from_currency": "BTC",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:20.822+00:00",
+          "duration_ms": 942,
+          "elapsed_ms": 943
+        },
+        {
+          "step": 2,
+          "node": "tools",
+          "input": "convert_currency(amount=0.5, from_currency=BTC, to_currency=UAH)",
+          "output": "Error invoking tool 'convert_currency' with kwargs {'amount': 0.5, 'from_currency': 'BTC', 'to_currency': 'UAH'} with error:\n from_currency: Value error, Валюти BTC немає серед 166 валют ExchangeRate-API\n Please fix the error and try again.",
+          "tool_calls": [
+            {
+              "name": "convert_currency",
+              "args": {
+                "amount": 0.5,
+                "from_currency": "BTC",
+                "to_currency": "UAH"
+              }
+            }
+          ],
+          "timestamp": "2026-11-24T22:12:20.827+00:00",
+          "duration_ms": 1,
+          "elapsed_ms": 947
+        },
+        {
+          "step": 3,
+          "node": "agent",
+          "input": "convert_currency: Error invoking tool 'convert_currency' with kwargs {'amount': 0.5, 'from_currency': 'BTC', 'to_currency': 'UAH'} with error:\n from_currency: Value error, Валюти BTC немає серед 166 валют ExchangeRate-API\n Please fix the error and try again.",
+          "output": "На жаль, я не можу конвертувати біткоїн (BTC) у гривні, оскільки валюта BTC відсутня в доступних курсах ExchangeRate-API. Якщо у вас є інша валюта для конвертації, я з радістю допоможу.",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:22.180+00:00",
+          "duration_ms": 1351,
+          "elapsed_ms": 2300
+        },
+        {
+          "step": 4,
+          "node": "formatter",
+          "input": "draft_answer",
+          "output": "{\"answer\": \"На жаль, я не можу конвертувати біткоїн (BTC) у гривні, оскільки валюта BTC відсутня в доступних курсах ExchangeRate-API. Якщо у вас є інша валюта для конвертації, я з радістю допоможу.\", \"confidence\": 1.0, \"sources\": [\"convert_currency\"], \"status\": \"complete\", \"stop_reason\": null, \"sources_dropped\": []}",
+          "tool_calls": [],
+          "timestamp": "2026-11-24T22:12:23.992+00:00",
+          "duration_ms": 1811,
+          "elapsed_ms": 4113
+        }
+      ]
+    }
+  ]
+}
